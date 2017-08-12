@@ -1,0 +1,30 @@
+RD /S /Q tmp
+MD tmp
+
+MkNumple2.exe /Lv:1 Data
+Draw9x9.exe Data\Input.csv Data\Input.bmp
+COPY Data\Input.bmp tmp\L1.bmp
+
+MkNumple2.exe /Lv:2 Data
+Draw9x9.exe /DG Data\Input.csv Data\Input.bmp
+COPY Data\Input.bmp tmp\R1.bmp
+
+MkNumple2.exe /Lv:2 Data
+Draw9x9.exe /DG Data\Input.csv Data\Input.bmp
+COPY Data\Input.bmp tmp\L2.bmp
+
+MkNumple2.exe /Lv:1 Data
+Draw9x9.exe Data\Input.csv Data\Input.bmp
+COPY Data\Input.bmp tmp\R2.bmp
+
+MkNumple2.exe /Lv:1 Data
+Draw9x9.exe Data\Input.csv Data\Input.bmp
+COPY Data\Input.bmp tmp\L3.bmp
+
+MkNumple2.exe /Lv:2 Data
+Draw9x9.exe /DG Data\Input.csv Data\Input.bmp
+COPY Data\Input.bmp tmp\R3.bmp
+
+TileBmp.exe
+
+PrintImage.exe tmp\dest.bmp

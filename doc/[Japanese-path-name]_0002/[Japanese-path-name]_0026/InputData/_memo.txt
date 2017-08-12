@@ -1,0 +1,1 @@
+各升に条件があるため、ms2PresetGroup.csv は置けない。

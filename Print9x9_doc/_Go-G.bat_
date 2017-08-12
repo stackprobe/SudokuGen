@@ -1,0 +1,3 @@
+MkNumple2.exe /Lv:2 Data
+Draw9x9.exe /DG Data\Input.csv Data\Input.bmp
+PrintImage.exe Data\Input.bmp

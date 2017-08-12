@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FDDD42BF-8898-41BD-8B1F-A4F4BD006745}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Charlotte</RootNamespace>
+    <AssemblyName>NumpleGen</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Consts.cs" />
+    <Compile Include="HistoryData.cs" />
+    <Compile Include="GlobalProcMtx.cs" />
+    <Compile Include="Ground.cs" />
+    <Compile Include="HistoryDataUtils.cs" />
+    <Compile Include="HistoryWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryWin.Designer.cs">
+      <DependentUpon>HistoryWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageCreator.cs" />
+    <Compile Include="ImagePrinter.cs" />
+    <Compile Include="LTRB.cs" />
+    <Compile Include="MainWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWin.Designer.cs">
+      <DependentUpon>MainWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CancellableBusyDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CancellableBusyDlg.Designer.cs">
+      <DependentUpon>CancellableBusyDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MkAndPrintWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MkAndPrintWin.Designer.cs">
+      <DependentUpon>MkAndPrintWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MkSudokuProc.cs" />
+    <Compile Include="N2Listener.cs" />
+    <Compile Include="PreviewDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PreviewDlg.Designer.cs">
+      <DependentUpon>PreviewDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProblemInfo.cs" />
+    <Compile Include="ProblemInfoUtils.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingWin.Designer.cs">
+      <DependentUpon>SettingWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setting詳細Win.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setting詳細Win.Designer.cs">
+      <DependentUpon>Setting詳細Win.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\ArgsReader.cs" />
+    <Compile Include="Tools\ArrayTools.cs" />
+    <Compile Include="Tools\AutoTable.cs" />
+    <Compile Include="Tools\BinaryTools.cs" />
+    <Compile Include="Tools\Bmp.cs" />
+    <Compile Include="Tools\Cancelled.cs" />
+    <Compile Include="Tools\Completed.cs" />
+    <Compile Include="Tools\DateTimeToSec.cs" />
+    <Compile Include="Tools\DateToDay.cs" />
+    <Compile Include="Tools\DoubleTools.cs" />
+    <Compile Include="Tools\Ended.cs" />
+    <Compile Include="Tools\FaultOperation.cs" />
+    <Compile Include="Tools\FileTools.cs" />
+    <Compile Include="Tools\IntTools.cs" />
+    <Compile Include="Tools\JString.cs" />
+    <Compile Include="Tools\LongTools.cs" />
+    <Compile Include="Tools\NamedEventObject.cs" />
+    <Compile Include="Tools\NamedEventPair.cs" />
+    <Compile Include="Tools\Nectar2.cs" />
+    <Compile Include="Tools\Rect.cs" />
+    <Compile Include="Tools\RectTable.cs" />
+    <Compile Include="Tools\StringTools.cs" />
+    <Compile Include="Tools\XNode.cs" />
+    <Compile Include="Tools\XYPoint.cs" />
+    <Compile Include="Utils.cs" />
+    <EmbeddedResource Include="HistoryWin.resx">
+      <DependentUpon>HistoryWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWin.resx">
+      <DependentUpon>MainWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CancellableBusyDlg.resx">
+      <DependentUpon>CancellableBusyDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MkAndPrintWin.resx">
+      <DependentUpon>MkAndPrintWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PreviewDlg.resx">
+      <DependentUpon>PreviewDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SettingWin.resx">
+      <DependentUpon>SettingWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setting詳細Win.resx">
+      <DependentUpon>Setting詳細Win.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
