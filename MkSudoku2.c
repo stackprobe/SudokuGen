@@ -17,6 +17,7 @@
 #include "libs\Mk9x9.h"
 #include "libs\KnownPosNumb.h"
 #include "libs2\MkGroupCsvHB.h"
+#include "libs2\MkConditionCsvGK.h"
 
 #define EV_BRUTE_FORCE_STARTED "{5a2e723d-aece-44a2-8c23-9bdbdfa6d277}" // shared_uuid
 #define EV_TOM_STARTED "{fb2c4966-d2e2-49b7-803c-ac3eb791f098}"
@@ -704,22 +705,32 @@ static void GenData(autoList_t *commands)
 		}
 		if(!strcmp(command, "GK_9x9_25"))
 		{
-			// TODO
+			// done
 			// 偶数・奇数の配置 25 %
-			// ms2PresetGroup.csv を削除
+			// ms2PresetGroup.csv を削除 <- 元から無いので削除しない。
 			// Condition.csv を作成
 			// 中断も受け付けること！
-			error(); // unimpl
+
+			LOGPOS();
+			Mk9x9InputCsvFile(DataDir);
+			LOGPOS();
+			MkConditionCsvGK(DataDir, 25);
+			LOGPOS();
 			continue;
 		}
 		if(!strcmp(command, "GK_9x9_100"))
 		{
-			// TODO
+			// done
 			// 偶数・奇数の配置 100 %
-			// ms2PresetGroup.csv を削除
+			// ms2PresetGroup.csv を削除 <- 元から無いので削除しない。
 			// Condition.csv を作成
 			// 中断も受け付けること！
-			error(); // unimpl
+
+			LOGPOS();
+			Mk9x9InputCsvFile(DataDir);
+			LOGPOS();
+			MkConditionCsvGK(DataDir, 100);
+			LOGPOS();
 			continue;
 		}
 		if(!strcmp(command, "MKIDS_HB_9x9"))
