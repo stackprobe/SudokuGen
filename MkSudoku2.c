@@ -18,6 +18,7 @@
 #include "libs\KnownPosNumb.h"
 #include "libs2\MkGroupCsvHB.h"
 #include "libs2\MkConditionCsvGK.h"
+#include "libs2\MkInstantDrawingScript.h"
 
 #define EV_BRUTE_FORCE_STARTED "{5a2e723d-aece-44a2-8c23-9bdbdfa6d277}" // shared_uuid
 #define EV_TOM_STARTED "{fb2c4966-d2e2-49b7-803c-ac3eb791f098}"
@@ -735,29 +736,38 @@ static void GenData(autoList_t *commands)
 		}
 		if(!strcmp(command, "MKIDS_HB_9x9"))
 		{
-			// TODO
+			// done
 			// InstantDrawingScript.txt を作成
 			// Group.csv から..
 			// 中断も受け付けること！
-			error(); // unimpl
+
+			LOGPOS();
+			MkInstantDrawingScript(DataDir);
+			LOGPOS();
 			continue;
 		}
 		if(!strcmp(command, "MKIDS_GK_9x9"))
 		{
-			// TODO
+			// done
 			// InstantDrawingScript.txt を作成
 			// Condition.csv から..
 			// 中断も受け付けること！
-			error(); // unimpl
+
+			LOGPOS();
+			MkInstantDrawingScript(DataDir);
+			LOGPOS();
 			continue;
 		}
 		if(!strcmp(command, "MKIDS_HBGK_9x9"))
 		{
-			// TODO
+			// done
 			// InstantDrawingScript.txt を作成
 			// Group.csv, Condition.csv から..
 			// 中断も受け付けること！
-			error(); // unimpl
+
+			LOGPOS();
+			MkInstantDrawingScript(DataDir);
+			LOGPOS();
 			continue;
 		}
 		error(); // Unknown command
