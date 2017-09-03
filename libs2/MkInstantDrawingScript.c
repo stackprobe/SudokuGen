@@ -54,7 +54,7 @@ static void ReleaseLine(Line_t *i)
 	memFree(i);
 }
 
-static int CompLine(Line_t *a, Line_t *b)
+static sint CompLine(Line_t *a, Line_t *b)
 {
 	int ret;
 
@@ -95,44 +95,199 @@ static autoList_t *ScrLines;
 static void LoadFrameFile(char *file)
 {
 	FILE *fp = fileOpen(file, "rt");
+	char *line;
+	uint frmnum;
+	uint frmidx;
 
-	for(; ; )
+	line = neReadLine(fp);
+	frmnum = toValue(line);
+	memFree(line);
+
+	for(frmidx = 0; frmidx < frmnum; frmidx++)
 	{
-		char *line = readLine(fp);
+		char *s1;
+		char *s2;
+		uint bL;
+		uint bT;
+		uint bW;
+		uint bH;
+		uint xB;
+		uint yB;
 
-		if(!line)
-			break;
+		line = neReadLine(fp);
 
-		error(); // TODO -> Groups
+		s1 = toknext(line, ",");
+		s2 = toknext(NULL, NULL);
+		errorCase(!s2);
+
+		bL = toValue(s1);
+		bT = toValue(s2);
+
+		memFree(line);
+
+		line = neReadLine(fp);
+
+		s1 = toknext(line, ",");
+		s2 = toknext(NULL, NULL);
+		errorCase(!s2);
+
+		bW = toValue(s1);
+		bH = toValue(s2);
+
+		memFree(line);
+
+		for(xB = 0; xB < bH; xB++) // X ï˚å¸Ç… bH å¬
+		for(yB = 0; yB < bW; yB++) // Y ï˚å¸Ç… bW å¬
+		{
+			autoList_t *group = newList();
+			uint x;
+			uint y;
+
+			for(x = 0; x < bW; x++)
+			for(y = 0; y < bH; y++)
+			{
+				addElement(group, (uint)CreateCell(xB * bW + x, yB * bH + y));
+			}
+			addElement(Groups, (uint)group);
+		}
 	}
 	fileClose(fp);
 }
 static void LoadGroupFile(char *file)
 {
 	FILE *fp = fileOpen(file, "rt");
+	char *line;
+	uint grpnum;
+	uint grpidx;
 
-	for(; ; )
+	line = neReadLine(fp);
+	grpnum = toValue(line);
+	memFree(line);
+
+	for(grpidx = 0; grpidx < grpnum; grpidx++)
 	{
-		char *line = readLine(fp);
+		autoList_t *group = newList();
+		uint cellnum;
+		uint cellidx;
 
-		if(!line)
-			break;
+		line = neReadLine(fp);
+		cellnum = toValue(line);
+		memFree(line);
 
-		error(); // TODO -> Groups
+		for(cellidx = 0; cellidx < cellnum; cellidx++)
+		{
+			char *sx;
+			char *sy;
+			uint x;
+			uint y;
+
+			line = neReadLine(fp);
+
+			sx = toknext(line, ",");
+			sy = toknext(NULL, NULL);
+			errorCase(!sy);
+
+			x = toValue(sx);
+			y = toValue(sy);
+
+			memFree(line);
+
+			addElement(group, (uint)CreateCell(x, y));
+		}
+		addElement(Groups, (uint)group);
 	}
 	fileClose(fp);
 }
+
+// ==== use int ====
+
+static int HasCellInGroup(autoList_t *group, int x, int y)
+{
+	Cell_t *cell;
+	int index;
+
+	if(x < 0 || y < 0)
+		return 0;
+
+	foreach(group, cell, index)
+		if(cell->X == x && cell->Y == y)
+			return 1;
+
+	return 0;
+}
+static int ExistsCell(int x, int y)
+{
+	autoList_t *group;
+	int index;
+
+	foreach(Groups, group, index)
+		if(HasCellInGroup(group, x, y))
+			return 1;
+
+	return 0;
+}
+static void CellToLines(autoList_t *group, Cell_t *cell, int x, int y, int x1, int y1, int x2, int y2)
+{
+	Line_t *line = CreateLine(x1, y1, x2, y2);
+
+	if(HasCellInGroup(group, x, y))
+		addElement(InnerLines, (uint)line);
+	else if(ExistsCell(x, y))
+		addElement(GroupLines, (uint)line);
+	else
+		addElement(OuterLines, (uint)line);
+}
 static void GroupsToLines(void)
 {
-	error(); // TODO Groups -> OuterLines, GroupLines, InnerLines
+	autoList_t *group;
+	Cell_t *cell;
+	int grpidx;
+	int cellidx;
+
+	foreach(Groups, group, grpidx)
+	foreach(group, cell, cellidx)
+	{
+		int x = cell->X;
+		int y = cell->Y;
+
+		CellToLines(group, cell, x - 1, y,     x,     y,     x,     y + 1);
+		CellToLines(group, cell, x,     y - 1, x,     y,     x + 1, y    );
+		CellToLines(group, cell, x + 1, y,     x + 1, y,     x + 1, y + 1);
+		CellToLines(group, cell, x,     y + 1, x,     y + 1, x + 1, y + 1);
+	}
+}
+
+// ====
+
+static int HasLine(autoList_t *lines, Line_t *target)
+{
+	Line_t *line;
+	uint index;
+
+	foreach(lines, line, index)
+		if(!CompLine(line, target))
+			return 1;
+
+	return 0;
 }
 static void EraseOverlapLines(autoList_t *lines, autoList_t *overLines)
 {
-	error(); // TODO
+	Line_t *line;
+	uint index;
+
+	foreach(lines, line, index)
+	{
+		if(HasLine(overLines, line))
+		{
+			ReleaseLine(line);
+			setElement(lines, index, 0);
+		}
+	}
+	removeZero(lines);
 }
 static void ArrangeLines(autoList_t *lines)
 {
-	error(); // TODO
+	// TODO -- íºê¸ÇÃòAåã
 }
 static void GetMaxXYFromLines(autoList_t *lines, uint *p_x, uint *p_y)
 {
@@ -184,10 +339,12 @@ static void ReadConditionGK(void)
 }
 void MkInstantDrawingScript(char *dataDir)
 {
+	LOGPOS();
+
 	FrameFile = combine(dataDir, "Frame.csv");
 	GroupFile = combine(dataDir, "Group.csv");
 	ConditionFile = combine(dataDir, "Condition.csv");
-	ScriptFile = combine(dataDir, "InnerDrawingScript.txt");
+	ScriptFile = combine(dataDir, "InstantDrawingScript.txt");
 
 	Groups = newList();
 
@@ -211,6 +368,10 @@ void MkInstantDrawingScript(char *dataDir)
 	ArrangeLines(GroupLines);
 	ArrangeLines(InnerLines);
 
+	rapidSort(OuterLines, (sint (*)(uint, uint))CompLine);
+	rapidSort(GroupLines, (sint (*)(uint, uint))CompLine);
+	rapidSort(InnerLines, (sint (*)(uint, uint))CompLine);
+
 	ScrLines = newList();
 
 	{
@@ -222,12 +383,12 @@ void MkInstantDrawingScript(char *dataDir)
 		addElement(ScrLines, (uint)xcout("0 %u %u", x, y));
 	}
 
+	if(existFile(ConditionFile))
+		ReadConditionGK();
+
 	DrawLines(OuterLines, 3);
 	DrawLines(GroupLines, 2);
 	DrawLines(InnerLines, 1);
-
-	if(existFile(ConditionFile))
-		ReadConditionGK();
 
 	writeLines(ScriptFile, ScrLines);
 
@@ -243,4 +404,6 @@ void MkInstantDrawingScript(char *dataDir)
 	memFree(GroupFile);
 	memFree(ConditionFile);
 	memFree(ScriptFile);
+
+	LOGPOS();
 }

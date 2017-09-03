@@ -65,6 +65,7 @@ void MkConditionCsvGK(char *dataDir, uint incidencePct)
 {
 	char *rFile = combine(dataDir, "Input.csv");
 	char *wFile = combine(dataDir, "Condition.csv");
+	char *delFile = combine(dataDir, "ms2PresetGroup.csv");
 	autoList_t *rows;
 	uint numbCnt;
 	uint targetNumbCnt;
@@ -78,7 +79,10 @@ void MkConditionCsvGK(char *dataDir, uint incidencePct)
 
 	writeCSVFile(wFile, rows);
 
+	removeFileIfExist(delFile);
+
 	memFree(rFile);
 	memFree(wFile);
+	memFree(delFile);
 	releaseDim(rows, 2);
 }

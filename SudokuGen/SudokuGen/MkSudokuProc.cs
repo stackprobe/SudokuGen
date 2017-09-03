@@ -42,8 +42,10 @@ namespace Charlotte
 					(_level + 1) +
 					" " +
 					_inputDataDir;
+				//#if DEBUG == false
 				psi.CreateNoWindow = true;
 				psi.UseShellExecute = false;
+				//#endif
 				psi.WorkingDirectory = Path.GetDirectoryName(Gnd.i.mkSudokuFile);
 
 				_proc = Process.Start(psi);

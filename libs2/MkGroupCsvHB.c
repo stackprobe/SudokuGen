@@ -255,9 +255,34 @@ static void MakePresetGroupCsvFile(char *dir)
 	fileClose(fp);
 	memFree(file);
 }
+static void MakeInputCsvFile(char *dir)
+{
+	char *file = combine(dir, "Input.csv");
+	FILE *fp;
+	int x;
+	int y;
+	int n = 1;
+
+	fp = fileOpen(file, "wt");
+
+	for(y = 0; y < MapWH; y++)
+	{
+		for(x = 0; x < MapWH; x++)
+		{
+			if(Map[x][y] == 1)
+				writeToken_x(fp, xcout("%u", n++));
+
+			writeToken(fp, ",");
+		}
+		writeLine(fp, "");
+	}
+	fileClose(fp);
+	memFree(file);
+}
 static MkGroupCsvHB(char *dir, int block_w, int block_h)
 {
 	MapWH = block_w * block_h;
+	errorCase(MAP_WH_MAX < MapWH);
 	BlockW = block_w;
 	BlockH = block_h;
 
@@ -266,6 +291,7 @@ static MkGroupCsvHB(char *dir, int block_w, int block_h)
 
 	MakeGroupCsvFile(dir);
 	MakePresetGroupCsvFile(dir);
+	MakeInputCsvFile(dir);
 }
 void MkGroupCsvHB_4x4(char *dir) // テスト用に作成
 {

@@ -677,6 +677,33 @@ static void Kezuru(void)
 	}
 	releaseDim(pairs, 1);
 }
+static void GD_MkInputCsvFile(void)
+{
+	char *inputCsvFile  = combine(DataDir, "Input.csv");
+	char *outputCsvFile = combine(DataDir, "Output.csv");
+
+	LOGPOS();
+
+	/*
+		HB_9x9 の場合 Frame.csv が無いので Mk9x9InputCsvFile は失敗するけど、
+		HB_9x9 を実行していれば Output.csv が残っているはずなので、これを Input.csv として使用する。
+	*/
+	if(existFile(outputCsvFile))
+	{
+		LOGPOS();
+		copyFile(outputCsvFile, inputCsvFile);
+		LOGPOS();
+	}
+	else
+	{
+		LOGPOS();
+		Mk9x9InputCsvFile(DataDir);
+		LOGPOS();
+	}
+	LOGPOS();
+	memFree(inputCsvFile);
+	memFree(outputCsvFile);
+}
 static void GenData(autoList_t *commands)
 {
 	char *command;
@@ -690,6 +717,7 @@ static void GenData(autoList_t *commands)
 			// 不定形ブロック
 			// ms2PresetGroup.csv Group.csv を作成
 			// 中断も受け付けること！
+			// CallSudoku() が遅くならないように、MkGroupCsvHB_9x9() で Input.csv も作成する。
 
 			LOGPOS();
 
@@ -708,12 +736,12 @@ static void GenData(autoList_t *commands)
 		{
 			// done
 			// 偶数・奇数の配置 25 %
-			// ms2PresetGroup.csv を削除 <- 元から無いので削除しない。
+			// ms2PresetGroup.csv を削除
 			// Condition.csv を作成
 			// 中断も受け付けること！
 
 			LOGPOS();
-			Mk9x9InputCsvFile(DataDir);
+			GD_MkInputCsvFile();
 			LOGPOS();
 			MkConditionCsvGK(DataDir, 25);
 			LOGPOS();
@@ -723,12 +751,12 @@ static void GenData(autoList_t *commands)
 		{
 			// done
 			// 偶数・奇数の配置 100 %
-			// ms2PresetGroup.csv を削除 <- 元から無いので削除しない。
+			// ms2PresetGroup.csv を削除
 			// Condition.csv を作成
 			// 中断も受け付けること！
 
 			LOGPOS();
-			Mk9x9InputCsvFile(DataDir);
+			GD_MkInputCsvFile();
 			LOGPOS();
 			MkConditionCsvGK(DataDir, 100);
 			LOGPOS();
