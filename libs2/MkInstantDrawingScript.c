@@ -287,7 +287,42 @@ static void EraseOverlapLines(autoList_t *lines, autoList_t *overLines)
 }
 static void ArrangeLines(autoList_t *lines)
 {
-	// TODO -- ’¼ü‚Ì˜AŒ‹
+	Line_t *a;
+	Line_t *b;
+	uint a_index;
+	uint b_index;
+
+restart:
+	foreach(lines, a, a_index)
+	foreach(lines, b, b_index)
+	if(a != b)
+	{
+		if(
+			a->X1 == a->X2 &&
+			a->X1 == b->X1 &&
+			a->X1 == b->X2 &&
+			a->Y2 == b->Y1
+			)
+		{
+			a->Y2 = b->Y2;
+			ReleaseLine(b);
+			fastDesertElement(lines, b_index);
+			goto restart;
+		}
+		if(
+			a->Y1 == a->Y2 &&
+			a->Y1 == b->Y1 &&
+			a->Y1 == b->Y2 &&
+			a->X2 == b->X1
+			)
+		{
+			a->X2 = b->X2;
+			ReleaseLine(b);
+			fastDesertElement(lines, b_index);
+			goto restart;
+		}
+	}
+	distinct2(lines, (sint (*)(uint, uint))CompLine, (void (*)(uint))ReleaseLine);
 }
 static void GetMaxXYFromLines(autoList_t *lines, uint *p_x, uint *p_y)
 {
@@ -339,6 +374,8 @@ static void ReadConditionGK(void)
 }
 void MkInstantDrawingScript(char *dataDir)
 {
+	int gk = 0;
+
 	LOGPOS();
 
 	FrameFile = combine(dataDir, "Frame.csv");
@@ -368,10 +405,6 @@ void MkInstantDrawingScript(char *dataDir)
 	ArrangeLines(GroupLines);
 	ArrangeLines(InnerLines);
 
-	rapidSort(OuterLines, (sint (*)(uint, uint))CompLine);
-	rapidSort(GroupLines, (sint (*)(uint, uint))CompLine);
-	rapidSort(InnerLines, (sint (*)(uint, uint))CompLine);
-
 	ScrLines = newList();
 
 	{
@@ -384,11 +417,16 @@ void MkInstantDrawingScript(char *dataDir)
 	}
 
 	if(existFile(ConditionFile))
+	{
 		ReadConditionGK();
-
+		gk = 1;
+	}
 	DrawLines(OuterLines, 3);
 	DrawLines(GroupLines, 2);
 	DrawLines(InnerLines, 1);
+
+	if(gk)
+		addElement(ScrLines, (uint)strx("9"));
 
 	writeLines(ScriptFile, ScrLines);
 

@@ -16,6 +16,7 @@
 #include "C:\Factory\SubTools\libs\Nectar2.h"
 #include "libs\Mk9x9.h"
 #include "libs\KnownPosNumb.h"
+#include "libs\DirToMemory.h"
 #include "libs2\MkGroupCsvHB.h"
 #include "libs2\MkConditionCsvGK.h"
 #include "libs2\MkInstantDrawingScript.h"
@@ -803,6 +804,8 @@ static void GenData(autoList_t *commands)
 }
 static void MkSudoku(char *dir)
 {
+	int extraGenDataMode = 0;
+
 	DataDir = makeFullPath(dir);
 
 	errorCase_m(!existDir(DataDir), "データディレクトリにアクセス出来ません。");
@@ -817,8 +820,14 @@ static void MkSudoku(char *dir)
 
 	if(existFile(ExtraGenDataFile))
 	{
-		autoList_t *lines = readLines(ExtraGenDataFile);
+		autoList_t *lines;
 
+		DirToMemory(DataDir);
+		extraGenDataMode = 1;
+
+retryExtraGenData:
+		LOGPOS();
+		lines = readLines(ExtraGenDataFile);
 		LOGPOS();
 		GenData(lines);
 		LOGPOS();
@@ -837,6 +846,11 @@ static void MkSudoku(char *dir)
 		error_m("入力データに誤りがあるようです。");
 
 	case RET_TIMED_OUT:
+		if(extraGenDataMode) {
+			MemoryToDir(DataDir);
+			LOGPOS();
+			goto retryExtraGenData;
+		}
 		error_m("入力データが難し過ぎるか、誤りがあるようです。");
 
 	default:
