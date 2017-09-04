@@ -61,6 +61,34 @@ static void ToOddEvens(autoList_t *rows)
 		}
 	}
 }
+static void MkPriorityFile(char *dataDir)
+{
+	char *rFile = combine(dataDir, "Condition.csv");
+	char *wFile = combine(dataDir, "ms2kPriority.csv");
+	autoList_t *rows;
+	autoList_t *row;
+	char *cell;
+	uint rowidx;
+	uint colidx;
+
+	LOGPOS();
+
+	rows = readCSVFileTR(rFile);
+
+	foreach(rows, row, rowidx)
+	foreach(row, cell, colidx)
+	{
+		if(*cell)
+			strcpy(cell, "1");
+	}
+	writeCSVFile(wFile, rows);
+
+	releaseDim(rows, 1);
+	memFree(rFile);
+	memFree(wFile);
+
+	LOGPOS();
+}
 void MkConditionCsvGK(char *dataDir, uint incidencePct)
 {
 	char *rFile = combine(dataDir, "Input.csv");
@@ -85,4 +113,9 @@ void MkConditionCsvGK(char *dataDir, uint incidencePct)
 	memFree(wFile);
 	memFree(delFile);
 	releaseDim(rows, 2);
+
+	if(incidencePct < 100)
+	{
+		MkPriorityFile(dataDir);
+	}
 }
