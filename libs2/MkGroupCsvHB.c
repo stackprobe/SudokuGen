@@ -281,13 +281,23 @@ static void MakeInputCsvFile(char *dir)
 }
 static MkGroupCsvHB(char *dir, int block_w, int block_h)
 {
+	void *mapInited;
+
 	MapWH = block_w * block_h;
 	errorCase(MAP_WH_MAX < MapWH);
 	BlockW = block_w;
 	BlockH = block_h;
 
 	InitMap();
-	KonekuriMap();
+	mapInited = memClone(Map, sizeof(Map));
+
+	do
+	{
+		KonekuriMap();
+	}
+	while(!memcmp(mapInited, Map, sizeof(Map)));
+
+	memFree(mapInited);
 
 	MakeGroupCsvFile(dir);
 	MakePresetGroupCsvFile(dir);
