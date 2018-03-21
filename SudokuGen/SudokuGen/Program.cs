@@ -54,16 +54,18 @@ namespace Charlotte
 
 				// < orig
 
-				CancellableBusyDlg.perform(true, delegate
-				{
-					Gnd.i.cancellableBusyDlg.setTitle("終了しています...");
+				// ここではフォームを開けない
 
-					Gnd.i.n2Listener.Dispose(); // n2Recver を使っているので、こっちを先に！
-					Gnd.i.n2Listener = null;
+				//CancellableBusyDlg.perform(true, delegate
+				//{
+				//Gnd.i.cancellableBusyDlg.setTitle("終了しています...");
 
-					Gnd.i.n2Recver.Dispose();
-					Gnd.i.n2Recver = null;
-				});
+				Gnd.i.n2Listener.Dispose(); // n2Recver を使っているので、こっちを先に！
+				Gnd.i.n2Listener = null;
+
+				Gnd.i.n2Recver.Dispose();
+				Gnd.i.n2Recver = null;
+				//});
 
 				Gnd.i.saveData();
 
