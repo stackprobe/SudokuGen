@@ -46,6 +46,8 @@ namespace Charlotte
 					File.Delete("LoadedData.csv");
 				}
 
+				Utils.WriteLog("Main 1.1");
+
 				// orig >
 
 				Application.EnableVisualStyles();
@@ -56,9 +58,15 @@ namespace Charlotte
 
 				// ここではフォームを開けない -----> MainWin_FormClosed()
 
+				Utils.WriteLog("Main 2.1");
+
 				Gnd.i.saveData();
 
+				Utils.WriteLog("Main 2.2");
+
 				FileTools.clearTMP();
+
+				Utils.WriteLog("Main 2.3");
 
 				GlobalProcMtx.Release();
 				procMutex.ReleaseMutex();

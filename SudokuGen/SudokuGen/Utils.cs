@@ -150,9 +150,10 @@ namespace Charlotte
 		public static void WriteLog(object message)
 		{
 			if (LogWriter == null)
-				LogWriter = new StreamWriter(Path.Combine(Program.selfDir, Path.GetFileName(Program.selfFile) + ".log"), false, Encoding.UTF8);
+				LogWriter = new StreamWriter(Path.Combine(Program.selfDir, Path.GetFileNameWithoutExtension(Program.selfFile) + ".log"), false, Encoding.UTF8);
 
 			LogWriter.WriteLine("[" + DateTime.Now + "] " + message);
+			LogWriter.Flush();
 		}
 	}
 }

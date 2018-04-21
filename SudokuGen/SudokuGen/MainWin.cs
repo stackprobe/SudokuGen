@@ -39,6 +39,8 @@ namespace Charlotte
 
 		private void MainWin_Shown(object sender, EventArgs e)
 		{
+			Utils.WriteLog("MainWin_Shown");
+
 			this.Height++; // フォームを最小化して元に戻したとき、lbKind のサイズがおかしくなる問題の対策
 			this.Height--;
 
@@ -51,6 +53,8 @@ namespace Charlotte
 
 		private void MainWin_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			Utils.WriteLog("MainWin_FormClosing");
+
 			// 設定保存
 			{
 				Gnd.i.lastPIIndex = lbKind.SelectedIndex;
@@ -64,8 +68,12 @@ namespace Charlotte
 
 			// Programs.cs から移動してきた終了処理 ----->
 
+			Utils.WriteLog("MainWin_FormClosed");
+
 			CancellableBusyDlg.perform(true, delegate
 			{
+				Utils.WriteLog("CancellableBusyDlg.perform");
+
 				Gnd.i.cancellableBusyDlg.setTitle("終了しています...");
 
 				Gnd.i.n2Listener.Dispose(); // n2Recver を使っているので、こっちを先に！
@@ -73,7 +81,11 @@ namespace Charlotte
 
 				Gnd.i.n2Recver.Dispose();
 				Gnd.i.n2Recver = null;
+
+				Utils.WriteLog("CancellableBusyDlg.perform ended");
 			});
+
+			Utils.WriteLog("MainWin_FormClosed ended");
 		}
 
 		private void 終了XToolStripMenuItem_Click(object sender, EventArgs e)
