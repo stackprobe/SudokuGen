@@ -60,7 +60,20 @@ namespace Charlotte
 
 		private void MainWin_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			// noop
+			this.Visible = false;
+
+			// Programs.cs から移動してきた終了処理 ----->
+
+			CancellableBusyDlg.perform(true, delegate
+			{
+				Gnd.i.cancellableBusyDlg.setTitle("終了しています...");
+
+				Gnd.i.n2Listener.Dispose(); // n2Recver を使っているので、こっちを先に！
+				Gnd.i.n2Listener = null;
+
+				Gnd.i.n2Recver.Dispose();
+				Gnd.i.n2Recver = null;
+			});
 		}
 
 		private void 終了XToolStripMenuItem_Click(object sender, EventArgs e)

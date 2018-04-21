@@ -144,5 +144,15 @@ namespace Charlotte
 			file = FileTools.makeFullPath(file);
 			return file;
 		}
+
+		private static StreamWriter LogWriter = null;
+
+		public static void WriteLog(object message)
+		{
+			if (LogWriter == null)
+				LogWriter = new StreamWriter(Path.Combine(Program.selfDir, Path.GetFileName(Program.selfFile) + ".log"), false, Encoding.UTF8);
+
+			LogWriter.WriteLine("[" + DateTime.Now + "] " + message);
+		}
 	}
 }
