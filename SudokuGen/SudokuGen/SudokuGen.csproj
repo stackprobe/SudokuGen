@@ -51,7 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Consts.cs" />
     <Compile Include="HistoryData.cs" />
     <Compile Include="GlobalProcMtx.cs" />
     <Compile Include="Ground.cs" />
@@ -107,7 +106,6 @@
     <Compile Include="Setting詳細Win.Designer.cs">
       <DependentUpon>Setting詳細Win.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tools\ArgsReader.cs" />
     <Compile Include="Tools\ArrayTools.cs" />
     <Compile Include="Tools\AutoTable.cs" />
     <Compile Include="Tools\BinaryTools.cs" />
@@ -121,16 +119,13 @@
     <Compile Include="Tools\FaultOperation.cs" />
     <Compile Include="Tools\FileTools.cs" />
     <Compile Include="Tools\IntTools.cs" />
-    <Compile Include="Tools\JString.cs" />
     <Compile Include="Tools\LongTools.cs" />
     <Compile Include="Tools\NamedEventObject.cs" />
     <Compile Include="Tools\NamedEventPair.cs" />
     <Compile Include="Tools\Nectar2.cs" />
-    <Compile Include="Tools\Rect.cs" />
     <Compile Include="Tools\RectTable.cs" />
     <Compile Include="Tools\StringTools.cs" />
     <Compile Include="Tools\XNode.cs" />
-    <Compile Include="Tools\XYPoint.cs" />
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="HistoryWin.resx">
       <DependentUpon>HistoryWin.cs</DependentUpon>
