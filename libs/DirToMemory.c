@@ -11,7 +11,7 @@ static void MTD_Reader(uchar *block, uint size)
 {
 	errorCase(getSize(Memory) - RPos < size);
 
-	memcpy(block, b(Memory) + RPos, size);
+	memcpy(block, b_(Memory) + RPos, size);
 	RPos += size;
 }
 void DirToMemory(char *dir)
