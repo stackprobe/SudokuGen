@@ -150,8 +150,12 @@ namespace Charlotte
 		public static void WriteLog(object message)
 		{
 			if (LogWriter == null)
-				LogWriter = new StreamWriter(Path.Combine(Program.selfDir, Path.GetFileNameWithoutExtension(Program.selfFile) + ".log"), false, Encoding.UTF8);
+			{
+				//string logFile = Path.Combine(Program.selfDir, Path.GetFileNameWithoutExtension(Program.selfFile) + ".log");
+				string logFile = Path.Combine(Program.selfDir, "NumpleGen.log");
 
+				LogWriter = new StreamWriter(logFile, false, Encoding.UTF8);
+			}
 			LogWriter.WriteLine("[" + DateTime.Now + "] " + message);
 			LogWriter.Flush();
 		}

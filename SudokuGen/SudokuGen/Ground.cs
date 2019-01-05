@@ -164,7 +164,8 @@ namespace Charlotte
 
 		private string getDataFile()
 		{
-			return Path.Combine(Program.selfDir, Path.GetFileNameWithoutExtension(Program.selfFile) + ".dat");
+			//return Path.Combine(Program.selfDir, Path.GetFileNameWithoutExtension(Program.selfFile) + ".dat");
+			return Path.Combine(Program.selfDir, "NumpleGen.dat");
 		}
 
 		// ----
