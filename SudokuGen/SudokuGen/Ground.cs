@@ -248,5 +248,10 @@ namespace Charlotte
 		public bool cancelled;
 		public MkSudokuProc mkSudokuProc = null; // null == 未実行
 		public string instantDrawingScriptFile = null; // null == 未定義
+
+		public bool is初回起動()
+		{
+			return File.Exists(getDataFile()) == false; // ? saveData()を1度も実行していない。
+		}
 	}
 }
