@@ -146,7 +146,7 @@
             this.ツールTToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(768, 26);
+			this.menuStrip1.Size = new System.Drawing.Size(768, 24);
 			this.menuStrip1.TabIndex = 1;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -155,13 +155,13 @@
 			this.アプリAToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.終了XToolStripMenuItem});
 			this.アプリAToolStripMenuItem.Name = "アプリAToolStripMenuItem";
-			this.アプリAToolStripMenuItem.Size = new System.Drawing.Size(74, 22);
+			this.アプリAToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
 			this.アプリAToolStripMenuItem.Text = "アプリ(&A)";
 			// 
 			// 終了XToolStripMenuItem
 			// 
 			this.終了XToolStripMenuItem.Name = "終了XToolStripMenuItem";
-			this.終了XToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+			this.終了XToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
 			this.終了XToolStripMenuItem.Text = "終了(&X)";
 			this.終了XToolStripMenuItem.Click += new System.EventHandler(this.終了XToolStripMenuItem_Click);
 			// 
@@ -173,32 +173,32 @@
             this.履歴RToolStripMenuItem,
             this.過去に作成した問題を全てクリアするCToolStripMenuItem});
 			this.ツールTToolStripMenuItem.Name = "ツールTToolStripMenuItem";
-			this.ツールTToolStripMenuItem.Size = new System.Drawing.Size(74, 22);
+			this.ツールTToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
 			this.ツールTToolStripMenuItem.Text = "ツール(&T)";
 			// 
 			// 設定SToolStripMenuItem
 			// 
 			this.設定SToolStripMenuItem.Name = "設定SToolStripMenuItem";
-			this.設定SToolStripMenuItem.Size = new System.Drawing.Size(298, 22);
+			this.設定SToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
 			this.設定SToolStripMenuItem.Text = "設定(&S)";
 			this.設定SToolStripMenuItem.Click += new System.EventHandler(this.設定SToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem1
 			// 
 			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(295, 6);
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(259, 6);
 			// 
 			// 履歴RToolStripMenuItem
 			// 
 			this.履歴RToolStripMenuItem.Name = "履歴RToolStripMenuItem";
-			this.履歴RToolStripMenuItem.Size = new System.Drawing.Size(298, 22);
+			this.履歴RToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
 			this.履歴RToolStripMenuItem.Text = "過去に作成した問題の一覧(&R)";
 			this.履歴RToolStripMenuItem.Click += new System.EventHandler(this.履歴RToolStripMenuItem_Click);
 			// 
 			// 過去に作成した問題を全てクリアするCToolStripMenuItem
 			// 
 			this.過去に作成した問題を全てクリアするCToolStripMenuItem.Name = "過去に作成した問題を全てクリアするCToolStripMenuItem";
-			this.過去に作成した問題を全てクリアするCToolStripMenuItem.Size = new System.Drawing.Size(298, 22);
+			this.過去に作成した問題を全てクリアするCToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
 			this.過去に作成した問題を全てクリアするCToolStripMenuItem.Text = "過去に作成した問題を全てクリアする(&C)";
 			this.過去に作成した問題を全てクリアするCToolStripMenuItem.Click += new System.EventHandler(this.過去に作成した問題を全てクリアするCToolStripMenuItem_Click);
 			// 

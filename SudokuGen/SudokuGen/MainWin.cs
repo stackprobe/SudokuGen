@@ -49,6 +49,8 @@ namespace Charlotte
 				lbKind.SelectedIndex = Gnd.i.lastPIIndex;
 				cmbDifficulty.SelectedIndex = Gnd.i.lastDifficulty;
 			}
+
+			Utils.PostShown(this);
 		}
 
 		private void MainWin_FormClosing(object sender, FormClosingEventArgs e)
