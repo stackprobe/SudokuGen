@@ -160,6 +160,8 @@ namespace Charlotte
 			LogWriter.Flush();
 		}
 
+		// sync > @ AntiWindowsDefenderSmartScreen
+
 		public static void antiWindowsDefenderSmartScreen()
 		{
 			WriteLog("awdss_1");
@@ -195,6 +197,10 @@ namespace Charlotte
 			}
 			WriteLog("awdss_4");
 		}
+
+		// < sync
+
+		// sync > @ PostShown
 
 		public static void PostShown(Form f)
 		{
@@ -233,5 +239,7 @@ namespace Charlotte
 				}
 			}
 		}
+
+		// < sync
 	}
 }
