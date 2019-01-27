@@ -34,7 +34,7 @@ namespace Charlotte
 				checkAloneExe();
 				checkLogonUser();
 
-				Utils.antiWindowsDefenderSmartScreen();
+				Utils.AntiWindowsDefenderSmartScreen();
 
 				Gnd.i.loadConf();
 				Gnd.i.loadData();
