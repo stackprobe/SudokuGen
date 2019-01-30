@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+// ^ sync @ BootTools_OLD
+
 namespace Charlotte
 {
 	// sync > @ BootTools_OLD
