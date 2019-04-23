@@ -82,31 +82,18 @@ namespace Charlotte
 
 		private void editColor(Panel pnl)
 		{
-			//ColorDialogクラスのインスタンスを作成
-			using (ColorDialog cd = new ColorDialog())
+			int[] customColors = new int[]
 			{
-				//はじめに選択されている色を設定
-				cd.Color = pnl.BackColor;
-				//色の作成部分を表示可能にする
-				//デフォルトがTrueのため必要はない
-				cd.AllowFullOpen = true;
-				//純色だけに制限しない
-				//デフォルトがFalseのため必要はない
-				cd.SolidColorOnly = false;
-				//[作成した色]に指定した色（RGB値）を表示する
-				cd.CustomColors = new int[]
-				{
-					0x33, 0x66, 0x99, 0xCC, 0x3300, 0x3333,
-					0x3366, 0x3399, 0x33CC, 0x6600, 0x6633,
-					0x6666, 0x6699, 0x66CC, 0x9900, 0x9933,
-				};
+				0x33, 0x66, 0x99, 0xCC, 0x3300, 0x3333,
+				0x3366, 0x3399, 0x33CC, 0x6600, 0x6633,
+				0x6666, 0x6699, 0x66CC, 0x9900, 0x9933,
+			};
 
-				//ダイアログを表示する
-				if (cd.ShowDialog() == DialogResult.OK)
-				{
-					//選択された色の取得
-					pnl.BackColor = cd.Color;
-				}
+			Color color = pnl.BackColor;
+
+			if (SaveLoadDialogs.SelectColor(ref color, customColors))
+			{
+				pnl.BackColor = color;
 			}
 		}
 
