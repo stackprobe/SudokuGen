@@ -1,2 +1,2 @@
-�e���ɏ��������邽�� ms2PresetGroup.csv �͒u���Ȃ��B
-���������̏��ŋz���o���邩������Ȃ����A�m�؂������̂Ŏ~�߂Ă����B
+各升に条件があるため ms2PresetGroup.csv は置けない。
+条件無しの升で吸収出来るかもしれないが、確証が無いので止めておく。

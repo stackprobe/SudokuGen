@@ -1,1 +1,1 @@
-�e���ɏ��������邽�߁Ams2PresetGroup.csv �͒u���Ȃ��B
+各升に条件があるため、ms2PresetGroup.csv は置けない。
