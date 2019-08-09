@@ -9,7 +9,7 @@ using System.Drawing.Imaging;
 
 namespace Charlotte
 {
-	public class HistoryDataUtils
+	public static class HistoryDataUtils
 	{
 		public static HistoryData createHistory(ProblemInfo pi, int level, Bitmap imgProblem, Bitmap imgAnswer)
 		{

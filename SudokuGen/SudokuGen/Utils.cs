@@ -9,7 +9,7 @@ using System.IO;
 
 namespace Charlotte
 {
-	public class Utils
+	public static class Utils
 	{
 		public static int getIndex(ComboBox combo, string item)
 		{

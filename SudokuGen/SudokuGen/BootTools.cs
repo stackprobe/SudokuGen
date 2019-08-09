@@ -9,7 +9,7 @@ namespace Charlotte
 {
 	// sync > @ BootTools_OLD
 
-	public class BootTools
+	public static class BootTools
 	{
 		public static string SelfFile
 		{

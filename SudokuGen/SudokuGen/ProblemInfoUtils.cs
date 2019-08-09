@@ -7,7 +7,7 @@ using System.IO;
 
 namespace Charlotte
 {
-	public class ProblemInfoUtils
+	public static class ProblemInfoUtils
 	{
 		public static ProblemInfo[] loadProblemInfos()
 		{
