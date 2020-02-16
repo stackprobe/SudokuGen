@@ -11,7 +11,7 @@ Cell_t;
 
 static Cell_t *CreateCell(uint x, uint y)
 {
-	Cell_t *i = nb(Cell_t);
+	Cell_t *i = nb_(Cell_t);
 
 	i->X = x;
 	i->Y = y;
@@ -40,7 +40,7 @@ Line_t;
 
 static Line_t *CreateLine(uint x1, uint y1, uint x2, uint y2)
 {
-	Line_t *i = nb(Line_t);
+	Line_t *i = nb_(Line_t);
 
 	i->X1 =x1;
 	i->Y1 =y1;
