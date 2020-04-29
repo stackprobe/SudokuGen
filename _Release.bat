@@ -11,4 +11,4 @@ C:\Factory\SubTools\EmbedConfig.exe --factory-dir-disabled out\MkNumple2.exe
 
 C:\Factory\SubTools\zip.exe /O out NumpleGen
 
-PAUSE
+IF NOT "%1" == "/-P" PAUSE
