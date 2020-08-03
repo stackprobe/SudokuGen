@@ -267,7 +267,7 @@ static autoList_t *MkGroup(uint count)
 	for(index = 0; index < count; index++)
 		addElement(grp, index + 1);
 
-	for(index = 0; index < count * 100; index++) // fixme
+	for(index = 0; index < count * 100; index++) // todo
 	{
 		uint a = GetRand_Mod(count);
 		uint b = GetRand_Mod(count);
@@ -415,7 +415,7 @@ foundPos:
 
 	if(KPN_IsKnown(x, y, numb))
 	{
-		if(refindCount < 10) // fixme: ãŒÀ“K“–
+		if(refindCount < 10) // todo: ãŒÀ“K“–
 		{
 			refindCount++;
 			goto refindPosNumb;
