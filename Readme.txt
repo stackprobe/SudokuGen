@@ -7,5 +7,5 @@ NumpleGen
 ビルド済み配布物
 ----------------
 
-http://stackprobe.dip.jp/NumpleGen
+http://stackprobe.ccsp.mydns.jp/NumpleGen
 
